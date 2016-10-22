@@ -9,9 +9,9 @@ class App extends Component {
     return (
       <div className="main">
         <ul className="navi">
-          <li className="navi__bt"><Link to="/">index</Link></li>
-          <li className="navi__bt"><Link to="/a">page A</Link></li>
-          <li className="navi__bt"><Link to="/b">page B</Link></li>
+          <li className="navi__bt"><Link to="/">TOP</Link></li>
+          <li className="navi__bt"><Link to="/about">ABOUT</Link></li>
+          <li className="navi__bt"><Link to="/works">WORKS</Link></li>
         </ul>
         <div className="text">
           { this.props.children }
@@ -21,30 +21,30 @@ class App extends Component {
   }
 }
 
-class Index extends Component {
+class Top extends Component {
   render() {
-    return <div>Index</div>;
+    return <div>Top</div>;
   }
 }
 
-class PageA extends Component {
+class About extends Component {
   render() {
-    return <div>A</div>;
+    return <div>About</div>;
   }
 }
 
-class PageB extends Component {
+class Works extends Component {
   render() {
-    return <div>B</div>;
+    return <div>Works</div>;
   }
 }
 
 render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Index} />
-      <Route path="/a" component={PageA} />
-      <Route path="/b" component={PageB} />
+      <IndexRoute component={Top} />
+      <Route path="/about" component={About} />
+      <Route path="/works" component={Works} />
     </Route>
   </Router>
-), document.querySelector('#app'));
+), document.getElementById('app'));
