@@ -1,14 +1,16 @@
 module.exports = {
+  context: __dirname + "/src",
   entry: {
-    bundle: './client/app.js',
-    index: './index.html'
+    js: "./App.js",
+    css: "./App.css",
+    html: "./index.html",
   },
   output: {
-    path: './out',
-    filename: '[name].js'
+    path: __dirname + "/dist",
+    filename: 'bundle.js',
   },
   devServer: {
-    contentBase: 'out',
+    contentBase: 'dist',
     port: 3000
   },
   module: {
@@ -18,9 +20,12 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-class-properties']
+          presets: ['es2015', 'react', 'stage-0']
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
       },
       {
         test: /\.styl$/,
@@ -31,12 +36,12 @@ module.exports = {
         loader: 'file?name=[path][name].[ext]'
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      }      
+        test: /\.png$/,
+        loader: 'file?name=[path][name].[ext]'
+      },
     ]
   },
   resolve: {
-    modulesDirectories: ['node_modules', './client']
+    extensions: ['', '.js', '.css', '.stylus', '.html', 'png']
   }
 };
